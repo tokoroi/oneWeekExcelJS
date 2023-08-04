@@ -9,6 +9,7 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { DatabaseComponent } from './component/database/database.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -24,7 +25,8 @@ import { DatabaseComponent } from './component/database/database.component';
     BrowserModule,
     AppRoutingModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    BrowserAnimationsModule
 
   ],
   providers: [],
