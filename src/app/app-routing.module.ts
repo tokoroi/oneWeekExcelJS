@@ -7,7 +7,8 @@ import { DatabaseComponent } from './component/database/database.component';
 const routes: Routes = [
 
   { path: "", component: HomeComponent },
-  { path: "importE", component: ImportComponent},
+  { path: "Home", component: HomeComponent },
+  { path: "app-import", component: ImportComponent},
   { path: 'database', component: DatabaseComponent },
   { path: "**", component: NotFoundComponent }
 ];
