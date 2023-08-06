@@ -1,0 +1,14 @@
+{
+    "workbench.colorCustomizations": {
+        "titleBar.activeBackground": "#6ad4ee", // タイトルバーの背景色
+        "titleBar.activeForeground": "#ffffff", // タイトルバーの文字色
+        "activityBar.background": "#32e032", // アクティビティバーの背景色
+        "activityBar.foreground": "#21e1e7", // アクティビティバーの文字色
+        
+        "key": "ctrl+k a",
+        "editor.fontFamily": "Source Code Pro, Menlo, Monaco, 'Courier New', monospace",
+        "command": "workbench.action.toggleActivityBarVisibility"
+    }
+    
+
+}
