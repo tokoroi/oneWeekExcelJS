@@ -1,2 +1,18 @@
 
 <input type="file" (change)="onFileChange($event)" accept=".xlsx">
+
+<div *ngIf="data">
+    <table>
+        <thead>
+            <tr>
+                <th *ngFor="let header of headers">{{ header }}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let row of data">
+                <td *ngFor="let cell of row">{{ cell }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
