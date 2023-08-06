@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./database.component.css']
 })
 export class DatabaseComponent {
-  title=1;
-  
+//komentoireta  
+
 
 }
