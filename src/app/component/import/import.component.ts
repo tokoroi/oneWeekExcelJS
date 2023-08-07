@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { FormsModule } from '@angular/forms';
 import { ExcelOutputService } from 'src/app/service/excel-outputService';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-import',
@@ -18,9 +19,7 @@ export class ImportComponent {
   editingCell: {row: number, col: number} = { row: -1, col: -1} ;
   //
   showSaveButton: boolean = false;
-  // 編集中の値を保持するための変数
-  tempValue: any;
-
+  // 編集中の値を保持する
   cellValues: any[][] = [];
 
  // ファイルが選択された時のイベントハンドラ

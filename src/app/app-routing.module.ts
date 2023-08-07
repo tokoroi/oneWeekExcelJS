@@ -4,6 +4,7 @@ import { ImportComponent } from './component/import/import.component';
 import { HomeComponent } from './component/home/home.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { DatabaseComponent } from './component/database/database.component';
+
 const routes: Routes = [
 
   { path: "", component: HomeComponent },
