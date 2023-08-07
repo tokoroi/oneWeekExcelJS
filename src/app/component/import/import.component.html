@@ -20,7 +20,12 @@
                             {{ cell }}
                         </ng-container>
                         <ng-template #editCell>
-                            <input [(ngModel)]="cellValues[i][j]" (blur)="endEditingCell()">
+                            <select [(ngModel)]="cellValues[i][j]" (blur)="endEditingCell()">
+                                <option value="〇">〇</option>
+                                <option value="◎">◎</option>
+                                <option value="✖">✖</option>
+                                <option value=" ">未記入</option>
+                            </select>
                         </ng-template>
                     </td>
                 </tr>
