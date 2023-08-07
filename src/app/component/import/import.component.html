@@ -1,18 +1,20 @@
 
 <input type="file" (change)="onFileChange($event)" accept=".xlsx">
 
-<div *ngIf="data">
+
+<div>
     <table>
         <thead>
-            <tr>
-                <th *ngFor="let header of headers">{{ header }}</th>
+            <tr *ngFor="let row of fileContent; let i = index;">
+                <td *ngFor="let cell of row; let j = index;" (dblclick)="startEditingCell(i, j)">
+                    <ng-container *ngIf="editingCell.row !== i || editingCell.col !== j; else editCell">{{ cell }}</ng-container>
+                    <ng-template #editCell>
+                        <input [(ngModel)]="fileContent[editingCell.row][editingCell.col]" (blur)="endEditingCell()">
+                    </ng-template>
+                </td>
             </tr>
         </thead>
-
-        <tbody>
-            <tr *ngFor="let row of data">
-                <td *ngFor="let cell of row">{{ cell }}</td>
-            </tr>
-        </tbody>
     </table>
+    <!-- fileContentに値が入ったら(Excelファイルを読み込んだら)表示-->
+    <button *ngIf="showSaveButton" class="button" (click)="saveToFile()">save</button>
 </div>
