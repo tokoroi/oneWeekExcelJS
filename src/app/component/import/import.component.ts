@@ -18,6 +18,8 @@ export class ImportComponent {
   editingCell: {row: number, col: number} = { row: -1, col: -1} ;
   //
   showSaveButton: boolean = false;
+  // 編集中の値を保持するための変数
+  tempValue: any;
 
  // ファイルが選択された時のイベントハンドラ
 onFileChange(event: any) {
@@ -50,6 +52,10 @@ onFileChange(event: any) {
 
   // セルの編集を終了する処理
   endEditingCell() {
+    // 編集された値をfileContentに反映する
+    this.fileContent[this.editingCell.row][this.editingCell.col] = this.tempValue;
+    // 編集中の値がなくなるので中身をクリア
+    this.tempValue = null;
     this.editingCell = { row: -1, col: -1 };
   }
 
