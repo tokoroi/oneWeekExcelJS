@@ -10,7 +10,9 @@ import { FormsModule } from '@angular/forms';
 export class ImportComponent {
 
   // 読み込んだデータを格納する配列
-  fileContent: any[] = [];
+  fileContent: any[][] = [];
+  // 一番左の列のみ別の配列に格納する
+  leftMostColumn: any[] = [];
   //
   editingCell: {row: number, col: number} = { row: -1, col: -1} ;
   //
@@ -31,6 +33,8 @@ onFileChange(event: any) {
     const worksheet = workbook.Sheets[sheetName];
     // json形式に変換
     this.fileContent = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+    // 一番左の列を別の配列に格納する処理を呼び出す
+    this.extractLeftMostColumnData();
     // saveボタンを表示する
     this.showSaveButton = true;
   };
@@ -48,10 +52,8 @@ onFileChange(event: any) {
     this.editingCell = { row: -1, col: -1 };
   }
 
-
-
+  // 編集した内容のExcelファイルを出力する
   saveToFile() {
-
     // 新しいworkbookを作成
     const newWorkbook: XLSX.WorkBook =XLSX.utils.book_new();
     // 新しいシートを作成し編集したデータをセルに配置する
@@ -68,4 +70,12 @@ onFileChange(event: any) {
     a.download = "oneWeekExcelJS.xlsx";
     a.click();
   }
+
+  // 一番左の列(一意の値が入る予定)のみ別の配列に格納する処理
+  extractLeftMostColumnData(){
+    if (this.extractLeftMostColumnData.length === 0) {
+      return;
+    }
+  }
+
 }

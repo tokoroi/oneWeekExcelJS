@@ -7,6 +7,9 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 10px;
 }
 
 .button:hover {
@@ -36,9 +39,20 @@ tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-input {
-    width: 100%;
-    border: none;
-    padding: 4px;
-    box-sizing: border-box;
+/* ファイル選択ボタンのスタイル */
+.custom-file-label {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+/* ファイル選択ボタンのホバー時のスタイル */
+.custom-file-label:hover {
+    background-color: #0056b3;
 }
