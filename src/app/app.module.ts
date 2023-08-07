@@ -19,6 +19,7 @@ import { TaskDialogComponent } from './task-dialog/task-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,6 @@ import { FormsModule } from '@angular/forms';
     MatDialogModule,
     MatInputModule,
     FormsModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]

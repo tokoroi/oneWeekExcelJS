@@ -13,23 +13,20 @@
 /* ボタン風のスタイル */
 span.button {
     display: inline-block;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
     cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    margin-left: 100px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 10px;
 }
 /* マウスホバー時のスタイル */
 span.button:hover {
-    background-color: #45a049;
+    background-color: #0056b3;
 }
 /* ボタンを押したときのスタイル */
 span.button:active {
-    background-color: #3e8e41;
+    background-color: #ffffff;
 }
