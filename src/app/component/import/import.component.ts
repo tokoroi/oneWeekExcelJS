@@ -21,6 +21,8 @@ export class ImportComponent {
   // 編集中の値を保持するための変数
   tempValue: any;
 
+  cellValues: any[][] = [];
+
  // ファイルが選択された時のイベントハンドラ
 onFileChange(event: any) {
   const file = event.target.files[0];
@@ -40,6 +42,8 @@ onFileChange(event: any) {
     this.extractLeftMostColumnData();
     // saveボタンを表示する
     this.showSaveButton = true;
+    // 編集中の値をセルごとに初期化する
+    this.cellValues = this.fileContent.map(row => [...row]);
   };
   // 読込対象(file)を非同期に読み込む
   reader.readAsArrayBuffer(file);
@@ -50,12 +54,16 @@ onFileChange(event: any) {
     this.editingCell = { row, col };
   }
 
+  onCellEdit(row: number, col: number, value: any) {
+    this.fileContent[row][col] = value;
+  }  
+
   // セルの編集を終了する処理
   endEditingCell() {
     // 編集された値をfileContentに反映する
-    this.fileContent[this.editingCell.row][this.editingCell.col] = this.tempValue;
+    this.fileContent[this.editingCell.row][this.editingCell.col] = this.cellValues[this.editingCell.row][this.editingCell.col];
     // 編集中の値がなくなるので中身をクリア
-    this.tempValue = null;
+    this.cellValues[this.editingCell.row][this.editingCell.col] = null;
     this.editingCell = { row: -1, col: -1 };
   }
 

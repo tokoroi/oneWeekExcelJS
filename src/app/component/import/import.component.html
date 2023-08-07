@@ -20,7 +20,7 @@
                             {{ cell }}
                         </ng-container>
                         <ng-template #editCell>
-                            <input [(ngModel)]="fileContent[i][j]" (blur)="endEditingCell()">
+                            <input [(ngModel)]="cellValues[i][j]" (blur)="endEditingCell()">
                         </ng-template>
                     </td>
                 </tr>

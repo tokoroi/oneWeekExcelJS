@@ -9,10 +9,12 @@ import { Router } from '@angular/router';
 export class HomeComponent{
   constructor(private router: Router) { } 
 
+  // Excel云々のページ
   Button1Click(): void {
     this.router.navigate(['/app-import']);
   }
-
+  
+  // FireBaseのよくわからないページ
   Button2Click(): void {
     this.router.navigate(['/database']);
   }
