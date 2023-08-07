@@ -13,4 +13,8 @@ export class HomeComponent{
     this.router.navigate(['/app-import']);
   }
 
+  Button2Click(): void {
+    this.router.navigate(['/database']);
+  }
+
 }
