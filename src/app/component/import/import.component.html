@@ -15,7 +15,7 @@
             <tbody>
                 <tr *ngFor="let row of fileContent; let i = index;">
                     <td>{{ i + 1 }}</td>
-                    <td *ngFor="let cell of row; let j = index;" (dblclick)="startEditingCell(i, j)">
+                    <td *ngFor="let cell of row; let j = index;" (click)="startEditingCell(i, j)">
                         <ng-container *ngIf="editingCell.row !== i || editingCell.col !== j; else editCell">
                             {{ cell }}
                         </ng-container>

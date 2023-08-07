@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { FormsModule } from '@angular/forms';
+import { ExcelOutputService } from 'src/app/service/excel-outputService';
 
 @Component({
   selector: 'app-import',
@@ -52,23 +53,10 @@ onFileChange(event: any) {
     this.editingCell = { row: -1, col: -1 };
   }
 
-  // 編集した内容のExcelファイルを出力する
+  // 編集した内容のExcelファイルを出力する処理(ExcelOutputService)を呼び出し
   saveToFile() {
-    // 新しいworkbookを作成
-    const newWorkbook: XLSX.WorkBook =XLSX.utils.book_new();
-    // 新しいシートを作成し編集したデータをセルに配置する
-    const newWorksheet: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(this.fileContent);
-    // workbookにシートを追加
-    XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, 'Sheet1');
-    // worksheetをExcelファイルに変換して保存
-    const excelBuffer = XLSX.write(newWorkbook, { bookType: 'xlsx', type: 'array' });
-    const data: Blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-    // ダウンロード
-    const a: HTMLAnchorElement = document.createElement("a");
-    a.href = URL.createObjectURL(data);
-    // ファイル名
-    a.download = "oneWeekExcelJS.xlsx";
-    a.click();
+    const fileName = 'oneWeekExcel.xlsx';
+    ExcelOutputService.saveToFile(this.fileContent, fileName);
   }
 
   // 一番左の列(一意の値が入る予定)のみ別の配列に格納する処理
