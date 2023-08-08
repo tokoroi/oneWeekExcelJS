@@ -26,6 +26,7 @@ export class ImportComponent {
 onFileChange(event: any) {
   const file = event.target.files[0];
   const reader = new FileReader();
+
   // Excelファイル読込処理
   reader.onload = (e: any) => {
     const data = new Uint8Array(e.target.result);
@@ -37,6 +38,17 @@ onFileChange(event: any) {
     const worksheet = workbook.Sheets[sheetName];
     // json形式に変換
     this.fileContent = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+    // 未入力セルにデフォルト値を設定
+    const defaultCellValue = '未入力';
+    for (const row of this.fileContent) {
+      for (let col = 0; col < row.length; col++) {
+        if (!row[col]) {
+          row[col] = defaultCellValue;
+        }
+      }
+    }
+
     // 一番左の列を別の配列に格納する処理を呼び出す
     this.extractLeftMostColumnData();
     // saveボタンを表示する
