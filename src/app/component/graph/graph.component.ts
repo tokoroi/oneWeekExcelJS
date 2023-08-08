@@ -9,6 +9,16 @@ import { Chart, registerables } from "chart.js";
 export class GraphComponent implements OnInit{
 
   @ViewChild("graphCanvas", { static: true }) graphCanvas!: ElementRef;
+  // テンプレート内の #dataInput というローカル変数に対応する要素を取得して、それを dataInput というプロパティにバインド
+  // テンプレート内の #dataInput という要素（この場合は入力フィールド）を TypeScript のコード内で参照できるように
+  @ViewChild("dataInput", { static: true }) dataInput!: ElementRef<HTMLInputElement>;
+
+  // X軸要素名
+  labels:string[] = ['〇', '◎', '✖'];
+  // データ初期値
+  data: number[] = [];
+
+  chart: Chart | undefined;
 
   constructor() {
     // Chart.js の使用前に必要な登録
@@ -17,22 +27,32 @@ export class GraphComponent implements OnInit{
 
   ngOnInit() {
     // グラフの描画内容
-    // X軸要素名
-    const labels = ['〇', '◎', '✖'];
-    // データ値
-    const data = [10, 2, 15];
+    this.drawGraph();
+  }
+
+  drawGraph() {
+    // データの更新処理
+    const dataString: string = this.dataInput.nativeElement.value;
+    const newData: number[] = dataString.split(",").map(Number);
+    this.data = newData;
+
     // 棒グラフを描画
     const ctx = this.graphCanvas.nativeElement.getContext("2d");
-    new Chart(ctx, {
+
+    if(this.chart){
+      this.chart.destroy();
+    }
+
+    this.chart = new Chart(ctx, {
       // bar型(棒グラフ)
       type: 'bar',
       data: {
         // X軸の要素名を設定
-        labels: labels,
+        labels: this.labels,
         datasets: [{
           label: 'Data',
           // データを設定
-          data: data,
+          data: this.data,
           // 描画されるグラフの見た目を設定
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
           borderColor: 'rgba(75, 192, 192, 1)',
