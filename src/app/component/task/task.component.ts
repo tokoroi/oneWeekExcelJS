@@ -7,6 +7,8 @@ import { Task } from './task'
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent {
+  //親コンポーネントTask型オブジェクトを受け取る。
   @Input() task: Task | null = null;
+  //出力を生成する。
   @Output() edit = new EventEmitter<Task>();
 }
