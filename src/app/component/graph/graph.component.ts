@@ -1,5 +1,6 @@
 import { Component,ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Chart, registerables } from "chart.js";
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-graph',
@@ -16,9 +17,11 @@ export class GraphComponent implements OnInit{
   // X軸要素名
   labels:string[] = ['〇', '◎', '✖'];
   // データ初期値
-  data: number[] = [];
+  data: number[] = [1,10,5];
 
   chart: Chart | undefined;
+
+  inputData: string = '';
 
   constructor() {
     // Chart.js の使用前に必要な登録
@@ -28,6 +31,30 @@ export class GraphComponent implements OnInit{
   ngOnInit() {
     // グラフの描画内容
     this.drawGraph();
+  }
+
+  // テキストボックスの値が変更された際の処理
+  onInputChange(){
+    this.data = this.inputData.split(",").map(Number);
+    this.drawGraph();
+  }
+
+  onFileChange(ebent: any) {
+    const target = event?.target as HTMLInputElement;
+    const file = target.files?.[0]
+
+    if (file){
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const sheetName = workbook.SheetNames[0];
+        const worksheet = workbook.Sheets[sheetName];
+        this.data = [worksheet['A1']?.v || 0, worksheet["B1"]?.v || 0, worksheet["C1"]?.v || 0];
+        this.drawGraph();
+    };
+    reader.readAsArrayBuffer(file);
+    }
   }
 
   drawGraph() {
