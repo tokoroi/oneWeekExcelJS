@@ -4,6 +4,7 @@ import { ImportComponent } from './component/import/import.component';
 import { HomeComponent } from './component/home/home.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { DatabaseComponent } from './component/database/database.component';
+import { GraphComponent } from './component/graph/graph.component';
 
 const routes: Routes = [
 
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: "Home", component: HomeComponent },
   { path: "app-import", component: ImportComponent},
   { path: 'database', component: DatabaseComponent },
+  { path: 'graph', component: GraphComponent },
   { path: "**", component: NotFoundComponent }
 ];
 

@@ -18,6 +18,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { TaskDialogComponent } from './task-dialog/task-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { GraphComponent } from './component/graph/graph.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     NotFoundComponent,
     DatabaseComponent,
     TaskComponent,
-    TaskDialogComponent
+    TaskDialogComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,
