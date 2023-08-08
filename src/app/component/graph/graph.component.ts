@@ -99,7 +99,7 @@ export class GraphComponent implements OnInit{
         {
           label: '〇',
           // データを設定
-          data: this.data,
+          data: this.datamaru,
           // 描画されるグラフの見た目を設定
           backgroundColor: 'rgba(0, 255, 0, 0.2)',
           borderColor: 'rgba(0, 255, 0, 1)',
@@ -108,7 +108,7 @@ export class GraphComponent implements OnInit{
         {
           label: '✖',
           // データを設定
-          data: this.data,
+          data: this.databatsu,
           // 描画されるグラフの見た目を設定
           backgroundColor: 'rgba(255, 0, 0, 0.2)',
           borderColor: 'rgba(255, 0, 0, 1)',
