@@ -23,6 +23,8 @@ import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/'; 
+import { GraphComponent } from './component/graph/graph.component';
+
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
     NotFoundComponent,
     DatabaseComponent,
     TaskComponent,
-    TaskDialogComponent
+    TaskDialogComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,

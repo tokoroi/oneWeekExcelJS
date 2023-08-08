@@ -1,5 +1,5 @@
 <app-home></app-home>
-<label for="fileInput" class="custom-file-label">ファイルを選択してください</label>
+<label for="fileInput" class="custom-file-label">読み込みファイルを選択</label>
 <input type="file" id="fileInput" (change)="onFileChange($event)" accept=".xlsx" style="display: none;">
 
 <!-- fileContentに値が入ったら(Excelファイルを読み込んだら)表示-->
@@ -16,8 +16,7 @@
                 <tr *ngFor="let row of fileContent; let i = index;">
                     <td>{{ i + 1 }}</td>
                     <td *ngFor="let cell of row; let j = index;" (click)="startEditingCell(i, j)">
-                        <ng-container *ngIf="editingCell.row !== i || editingCell.col !== j; else editCell">
-                            {{ cell || ' ' }} <!-- セルが空の場合はスペースを表示 -->
+                        <ng-container *ngIf="editingCell.row !== i || editingCell.col !== j; else editCell">                            {{ cell || ' ' }} <!-- セルが空の場合はスペースを表示 -->
                         </ng-container>
                         <ng-template #editCell>
                             <!-- <input [(ngModel)]="cellValues[i][j]" (blur)="endEditingCell()"> -->
