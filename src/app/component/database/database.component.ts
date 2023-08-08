@@ -7,6 +7,7 @@ import { TaskDialogResult } from 'src/app/component/task-dialog/task-dialog.comp
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { style } from '@angular/animations';
+import { toArray } from 'rxjs/operators';
 @Component({
   selector: 'app-database',
   templateUrl: './database.component.html',
@@ -85,6 +86,7 @@ newTask(): void {
         return;
       }
       //this.todo.push(result.task);
+      this.store.collection('todo').add(result.task);
     });
 }
 
