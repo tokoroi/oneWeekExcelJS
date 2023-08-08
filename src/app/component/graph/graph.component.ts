@@ -17,7 +17,7 @@ export class GraphComponent implements OnInit{
   // X軸要素名
   labels:string[] = ['〇', '◎', '✖'];
   // データ初期値
-  data: number[] = [1,10,5];
+  data: number[] = [];
 
   chart: Chart | undefined;
 
@@ -29,7 +29,7 @@ export class GraphComponent implements OnInit{
   }
 
   ngOnInit() {
-    // グラフの描画内容
+    // グラフの描画処理呼び出し
     this.drawGraph();
   }
 
@@ -39,7 +39,8 @@ export class GraphComponent implements OnInit{
     this.drawGraph();
   }
 
-  onFileChange(ebent: any) {
+  // Excelファイルが選択された際の処理
+  onFileChange(event: any) {
     const target = event?.target as HTMLInputElement;
     const file = target.files?.[0]
 
@@ -50,18 +51,22 @@ export class GraphComponent implements OnInit{
         const workbook = XLSX.read(data, { type: 'array' });
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
+        // dataにそれぞれのセルの値をセット
         this.data = [worksheet['A1']?.v || 0, worksheet["B1"]?.v || 0, worksheet["C1"]?.v || 0];
+        // データを読み込めているかconsoleで確認
+        console.log(this.data);
+        // グラフの描画処理呼び出し
         this.drawGraph();
     };
     reader.readAsArrayBuffer(file);
     }
   }
 
+  // グラフの描画処理
   drawGraph() {
     // データの更新処理
     const dataString: string = this.dataInput.nativeElement.value;
     const newData: number[] = dataString.split(",").map(Number);
-    this.data = newData;
 
     // 棒グラフを描画
     const ctx = this.graphCanvas.nativeElement.getContext("2d");
