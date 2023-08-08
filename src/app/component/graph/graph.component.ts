@@ -15,7 +15,8 @@ export class GraphComponent implements OnInit{
   @ViewChild("dataInput", { static: true }) dataInput!: ElementRef<HTMLInputElement>;
 
   // X軸要素名
-  labels:string[] = ['〇', '◎', '✖'];
+  labels:string[] = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July',
+  'August', 'September', 'October', 'November', 'December'];
   // データ初期値
   data: number[] = [];
 
@@ -82,14 +83,33 @@ export class GraphComponent implements OnInit{
         // X軸の要素名を設定
         labels: this.labels,
         datasets: [{
-          label: 'Data',
+          label: '◎',
           // データを設定
           data: this.data,
           // 描画されるグラフの見た目を設定
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
           borderColor: 'rgba(75, 192, 192, 1)',
           borderWidth: 1
-        }]
+        },
+        {
+          label: '〇',
+          // データを設定
+          data: this.data,
+          // 描画されるグラフの見た目を設定
+          backgroundColor: 'rgba(0, 255, 0, 0.2)',
+          borderColor: 'rgba(0, 255, 0, 1)',
+          borderWidth: 1
+        },
+        {
+          label: '✖',
+          // データを設定
+          data: this.data,
+          // 描画されるグラフの見た目を設定
+          backgroundColor: 'rgba(0, 0, 255, 0.2)',
+          borderColor: 'rgba(0, 0, 255, 1)',
+          borderWidth: 1
+        }
+    ]
       },
       options: {
         scales: {
