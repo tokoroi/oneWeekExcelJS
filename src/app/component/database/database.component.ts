@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Task } from 'src/app/task/task';
+import { Task } from 'src/app/component/task/task';
 import { MatDialog } from '@angular/material/dialog';
 import {CdkDragDrop,transferArrayItem} from '@angular/cdk/drag-drop';
-import { TaskDialogComponent } from 'src/app/task-dialog/task-dialog.component';
-import { TaskDialogResult } from 'src/app/task-dialog/task-dialog.component';
+import { TaskDialogComponent } from 'src/app/component/task-dialog/task-dialog.component';
+import { TaskDialogResult } from 'src/app/component/task-dialog/task-dialog.component';
 @Component({
   selector: 'app-database',
   templateUrl: './database.component.html',
