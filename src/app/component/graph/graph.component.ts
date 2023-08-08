@@ -50,8 +50,6 @@ export class GraphComponent implements OnInit{
       const reader = new FileReader();
       reader.onload = (e: any) => {
         const data = new Uint8Array(e.target.result);
-        const datamaru = new Uint8Array(e.target.result);
-        const databatsu = new Uint8Array(e.target.result);
         const workbook = XLSX.read(data, { type: 'array' });
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
