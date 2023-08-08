@@ -40,7 +40,7 @@ onFileChange(event: any) {
     this.fileContent = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
     // 未入力セルにデフォルト値を設定
-    const defaultCellValue = '未入力';
+    const defaultCellValue = '　';
     for (const row of this.fileContent) {
       for (let col = 0; col < row.length; col++) {
         if (!row[col]) {
