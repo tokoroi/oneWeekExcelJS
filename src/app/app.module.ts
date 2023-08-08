@@ -18,7 +18,13 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { TaskDialogComponent } from './component/task-dialog/task-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat'
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore/'; 
 import { GraphComponent } from './component/graph/graph.component';
+
 
 
 @NgModule({
@@ -43,7 +49,9 @@ import { GraphComponent } from './component/graph/graph.component';
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
