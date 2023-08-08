@@ -24,8 +24,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/'; 
 import { GraphComponent } from './component/graph/graph.component';
-
-
+import { TopComponent } from './component/top/top.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +35,8 @@ import { GraphComponent } from './component/graph/graph.component';
     DatabaseComponent,
     TaskComponent,
     TaskDialogComponent,
-    GraphComponent
+    GraphComponent,
+    TopComponent
   ],
   imports: [
     BrowserModule,
