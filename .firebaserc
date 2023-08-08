@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "date0804-71a09": {
+      "hosting": {
+        "oneWeekExcelJS": [
+          "date0804-71a09"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "date0804-71a09"
+  }
+}
