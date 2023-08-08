@@ -6,11 +6,12 @@ import { TaskDialogComponent } from 'src/app/component/task-dialog/task-dialog.c
 import { TaskDialogResult } from 'src/app/component/task-dialog/task-dialog.component';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { style } from '@angular/animations';
 import { toArray } from 'rxjs/operators';
 @Component({
   selector: 'app-database',
   templateUrl: './database.component.html',
-  styleUrls: ['./database.component.css']
+  styleUrls: ['./database.component.css', '../../../styles.css']
 })
 export class DatabaseComponent {
   todo = this.store.collection('todo').valueChanges({ idField: 'id' }) as Observable<Task[]>;

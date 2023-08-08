@@ -7,7 +7,7 @@ import { HomeComponent } from '../home/home.component';
 @Component({
   selector: 'app-import',
   templateUrl: './import.component.html',
-  styleUrls: ['./import.component.css']
+  styleUrls: ['./import.component.css', '../../../styles.css']
 })
 export class ImportComponent {
 

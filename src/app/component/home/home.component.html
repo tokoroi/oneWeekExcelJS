@@ -1,9 +1,9 @@
 
-<body class="body">
-    <div class="homeber">
-        <span class="button" (click)="Button1Click()">in</span>
-        <span class="button" (click)="Button2Click()">database</span>
-        <span class="button" (click)="Button3Click()">graph</span>
-        <span class="button" (click)="HomeButtonClick()">Home</span>
-    </div>
-</body>
+    <body class="body">
+        <div class="homeber">
+            <span class="button" [class.active]="isButtonActive('Excel')" (click)="Button1Click()">Excel</span>
+            <span class="button" [class.active]="isButtonActive('database')" (click)="Button2Click()">database</span>
+            <span class="button" [class.active]="isButtonActive('graph')" (click)="Button3Click()">graph</span>
+            <span class="button" [class.active]="isButtonActive('home')" (click)="HomeButtonClick()">Home</span>
+        </div>    
+    </body>

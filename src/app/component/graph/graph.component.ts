@@ -5,7 +5,7 @@ import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
-  styleUrls: ['./graph.component.css']
+  styleUrls: ['./graph.component.css', '../../../styles.css']
 })
 export class GraphComponent implements OnInit{
 

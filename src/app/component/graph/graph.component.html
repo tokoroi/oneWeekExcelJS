@@ -1,14 +1,14 @@
-<app-home></app-home>
-<div>
-    <label for="dataInput">データ（カンマ区切り）：</label>
-    <input type="text" id="dataInput" #dataInput [(ngModel)]="inputData" (change)="onInputChange()">
-</div>
+<div class="mainDiv">
+    <div class="textbox">
+        <label for="dataInput">データ（カンマ区切り）：</label>
+        <input type="text" id="dataInput" #dataInput [(ngModel)]="inputData" (change)="onInputChange()">
+    </div>
 
-<div>
-    <label for="fileInput" class="custom-file-label">読み込みファイルを選択</label>
-    <input type="file" id="fileInput" (change)="onFileChange($event)" accept=".xlsx" style="display: none;">
+    <div>
+        <label for="fileInput" class="custom-file-label">読み込みファイルを選択</label>
+        <input type="file" id="fileInput" (change)="onFileChange($event)" accept=".xlsx" style="display: none;">
+    </div>
 </div>
-
-<div>
-    <canvas #graphCanvas></canvas>
-</div>
+    <div>
+        <canvas #graphCanvas></canvas>
+    </div>
