@@ -19,4 +19,13 @@ export class HomeComponent{
     this.router.navigate(['/database']);
   }
 
+  // グラフページ
+  Button3Click(): void {
+    this.router.navigate(['/graph']);
+  }
+
+  // Home画面に戻る
+  HomeButtonClick(): void {
+    this.router.navigate(['/Home']);
+  }
 }
