@@ -19,7 +19,8 @@ export class GraphComponent implements OnInit{
   'August', 'September', 'October', 'November', 'December'];
   // データ初期値
   data: number[] = [];
-
+  datamaru: number[] = [];
+  databatsu: number[] = [];
   chart: Chart | undefined;
 
   inputData: string = '';
@@ -49,11 +50,15 @@ export class GraphComponent implements OnInit{
       const reader = new FileReader();
       reader.onload = (e: any) => {
         const data = new Uint8Array(e.target.result);
+        const datamaru = new Uint8Array(e.target.result);
+        const databatsu = new Uint8Array(e.target.result);
         const workbook = XLSX.read(data, { type: 'array' });
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
         // dataにそれぞれのセルの値をセット
         this.data = [worksheet['A1']?.v || 0, worksheet["B1"]?.v || 0, worksheet["C1"]?.v || 0];
+        this.datamaru = [worksheet['A2']?.v || 0, worksheet["B2"]?.v || 0, worksheet["C2"]?.v || 0];
+        this.databatsu = [worksheet['A3']?.v || 0, worksheet["B3"]?.v || 0, worksheet["C3"]?.v || 0];
         // データを読み込めているかconsoleで確認
         console.log(this.data);
         // グラフの描画処理呼び出し
@@ -105,8 +110,8 @@ export class GraphComponent implements OnInit{
           // データを設定
           data: this.data,
           // 描画されるグラフの見た目を設定
-          backgroundColor: 'rgba(0, 0, 255, 0.2)',
-          borderColor: 'rgba(0, 0, 255, 1)',
+          backgroundColor: 'rgba(255, 0, 0, 0.2)',
+          borderColor: 'rgba(255, 0, 0, 1)',
           borderWidth: 1
         }
     ]
