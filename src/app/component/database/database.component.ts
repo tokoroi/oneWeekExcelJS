@@ -25,13 +25,15 @@ export class DatabaseComponent implements OnInit{
     console.log(fileContent); 
 
     // fileContent の内容を todo に追加
+    // fileContentに値が入っている且つ長さが1以上
     if (fileContent && fileContent.length > 0) {
+      // fileContentの中身の文だけ回す
       for (const row of fileContent) {
         //taskオブジェクト作成
         const task: Task = {
           // 指定したカラムからそれぞれtitleと説明を取得する処理
-          title: row[0], // ここで適切なカラムにアクセスしてタイトルを設定
-          description: row[1] // ここで適切なカラムにアクセスして説明を設定
+          title: row[0], 
+          description: row[1] 
         };
         // taskオブジェクトをdatabaseに追加
         this.store.collection('todo').add(task);
