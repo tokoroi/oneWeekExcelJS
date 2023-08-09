@@ -1,6 +1,7 @@
 import { Component,ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Chart, registerables } from "chart.js";
 import * as XLSX from 'xlsx';
+import { InputDataService } from 'src/app/service/excel-inputService';
 
 @Component({
   selector: 'app-graph',
@@ -26,12 +27,20 @@ export class GraphComponent implements OnInit{
 
   inputData: string = '';
 
-  constructor() {
+  constructor(private inputDataService: InputDataService) {
     // Chart.js の使用前に必要な登録
     Chart.register(...registerables);
   }
 
   ngOnInit() {
+    // Excelファイルを読み込んで集計した結果の値を持って来る
+    const maruCount = this.inputDataService.maruCount;
+    const daiMaruCount = this.inputDataService.daiMaruCount;
+    const batsuCount = this.inputDataService.batsuCount;
+    // デバッグ確認用
+    console.log(maruCount);
+    console.log(daiMaruCount);
+    console.log(batsuCount);
     // グラフの描画処理呼び出し
     this.drawGraph();
   }
