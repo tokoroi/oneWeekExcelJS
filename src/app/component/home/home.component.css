@@ -36,3 +36,7 @@ span.button.active {
     padding: 5px; /* 余白を調整してボタンのテキストが枠に重ならないように */
     border-radius: 8px 8px 0 0; /* 下側だけ角の丸みをなくす */
 }
+
+.dialogButton {
+    margin-left: 1300px;
+}
