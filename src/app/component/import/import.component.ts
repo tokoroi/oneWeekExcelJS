@@ -66,6 +66,8 @@ onFileChange(event: any) {
   reader.readAsArrayBuffer(file);
   }
 
+  // それぞれの注文の数を数えるためにif文で分岐してそれぞれの変数を++していく
+  // 並盛
   countMaru(): number {
     let maruCount = 0;
     for (const row of this.fileContent ) {
@@ -77,7 +79,7 @@ onFileChange(event: any) {
     }
     return maruCount;
   }
-
+  // 大盛
   countDaiMaru(): number {
     let daiMaruCount = 0;
     for (const row of this.fileContent ) {
@@ -89,7 +91,7 @@ onFileChange(event: any) {
     }
     return daiMaruCount;
   }
-
+  // 注文無し
   countbatsu(): number {
     let batsuCount = 0;
     for (const row of this.fileContent ) {
