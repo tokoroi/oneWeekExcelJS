@@ -4,6 +4,12 @@
 
     <!-- fileContentに値が入ったら(Excelファイルを読み込んだら)表示-->
     <button *ngIf="showSaveButton" class="button" (click)="saveToFile()">save</button>
+    <div *ngIf="showSaveButton" >
+        <p> 並盛: {{ countMaru() }} 食</p>
+        <p> 大盛: {{ countDaiMaru() }} 食</p>
+        <p> 注文無し: {{ countbatsu() }} 食</p>
+        <p> 金額: ￥ {{ (countMaru() + countDaiMaru())  * 350}}</p>
+    </div>
     <div>
         <table>
             <thead>
@@ -32,14 +38,5 @@
                     </tr>
             </tbody>
         </table>
-    </div>
-    <div>
-        <p> 並盛: {{ countMaru() }} 食</p>
-    </div>
-    <div>
-        <p> 大盛: {{ countDaiMaru() }} 食</p>
-    </div>
-    <div>
-        <p> 注文無し: {{ countbatsu() }} 食</p>
     </div>
 </div>
