@@ -55,9 +55,9 @@ export class GraphComponent implements OnInit{
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
         // dataにそれぞれのセルの値をセット
-        this.data = [worksheet['A1']?.v || 0, worksheet["B1"]?.v || 0, worksheet["C1"]?.v || 0];
-        this.datamaru = [worksheet['A2']?.v || 0, worksheet["B2"]?.v || 0, worksheet["C2"]?.v || 0];
-        this.databatsu = [worksheet['A3']?.v || 0, worksheet["B3"]?.v || 0, worksheet["C3"]?.v || 0];
+        this.data = [worksheet['A1']?.v || 0, worksheet["B1"]?.v || 0, worksheet["C1"]?.v || 0, worksheet["D1"]?.v || 0, worksheet["E1"]?.v || 0, worksheet["F1"]?.v || 0, worksheet["G1"]?.v || 0, worksheet["H1"]?.v || 0, worksheet["I1"]?.v || 0, worksheet["J1"]?.v || 0, worksheet["K1"]?.v || 0, worksheet["L1"]?.v || 0];
+        this.datamaru = [worksheet['A2']?.v || 0, worksheet["B2"]?.v || 0, worksheet["C2"]?.v || 0, worksheet["D2"]?.v || 0, worksheet["E2"]?.v || 0, worksheet["F2"]?.v || 0, worksheet["G2"]?.v || 0, worksheet["H2"]?.v || 0, worksheet["I2"]?.v || 0, worksheet["J2"]?.v || 0, worksheet["K2"]?.v || 0, worksheet["L2"]?.v || 0];
+        this.databatsu = [worksheet['A3']?.v || 0, worksheet["B3"]?.v || 0, worksheet["C3"]?.v || 0, worksheet["D3"]?.v || 0, worksheet["E3"]?.v || 0, worksheet["F3"]?.v || 0, worksheet["G3"]?.v || 0, worksheet["H3"]?.v || 0, worksheet["I3"]?.v || 0, worksheet["J3"]?.v || 0, worksheet["K3"]?.v || 0, worksheet["L3"]?.v || 0];
         // データを読み込めているかconsoleで確認
         console.log(this.data);
         // グラフの描画処理呼び出し
@@ -73,7 +73,7 @@ export class GraphComponent implements OnInit{
     const dataString: string = this.dataInput.nativeElement.value;
     const newData: number[] = dataString.split(",").map(Number);
 
-    // 棒グラフを描画
+    // 折れ線グラフを描画
     const ctx = this.graphCanvas.nativeElement.getContext("2d");
 
     if(this.chart){
@@ -81,8 +81,8 @@ export class GraphComponent implements OnInit{
     }
 
     this.chart = new Chart(ctx, {
-      // bar型(棒グラフ)
-      type: 'bar',
+      // line型(折れ線グラフ)
+      type: 'line',
       data: {
         // X軸の要素名を設定
         labels: this.labels,
@@ -91,27 +91,24 @@ export class GraphComponent implements OnInit{
           // データを設定
           data: this.data,
           // 描画されるグラフの見た目を設定
-          backgroundColor: 'rgba(75, 192, 192, 0.2)',
           borderColor: 'rgba(75, 192, 192, 1)',
-          borderWidth: 1
+          fill: false
         },
         {
           label: '〇',
           // データを設定
           data: this.datamaru,
           // 描画されるグラフの見た目を設定
-          backgroundColor: 'rgba(0, 255, 0, 0.2)',
           borderColor: 'rgba(0, 255, 0, 1)',
-          borderWidth: 1
+          fill: false
         },
         {
           label: '✖',
           // データを設定
           data: this.databatsu,
           // 描画されるグラフの見た目を設定
-          backgroundColor: 'rgba(255, 0, 0, 0.2)',
           borderColor: 'rgba(255, 0, 0, 1)',
-          borderWidth: 1
+          fill: false
         }
     ]
       },
