@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Task } from 'src/app/component/task/task';
 import { MatDialog } from '@angular/material/dialog';
 import {CdkDragDrop,transferArrayItem} from '@angular/cdk/drag-drop';
@@ -8,12 +8,20 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { style } from '@angular/animations';
 import { toArray } from 'rxjs/operators';
+import { DataService } from 'src/app/service/excel-dataService';
 @Component({
   selector: 'app-database',
   templateUrl: './database.component.html',
   styleUrls: ['./database.component.css', '../../../styles.css']
 })
-export class DatabaseComponent {
+export class DatabaseComponent implements OnInit{
+
+  ngOnInit(): void {
+    // Excelファイル読込画面で読み込ませた後このコンポーネント初期化時にExcelファイルの中身の値を登録
+    const fileContent = this.dataService.fileContent;
+    // 確認用
+    console.log(fileContent); 
+  }
   todo = this.store.collection('todo').valueChanges({ idField: 'id' }) as Observable<Task[]>;
   inProgress = this.store.collection('inProgress').valueChanges({ idField: 'id' }) as Observable<Task[]>;
   done = this.store.collection('done').valueChanges({ idField: 'id' }) as Observable<Task[]>;
@@ -70,7 +78,7 @@ drop(event: CdkDragDrop<Task[]| null, any, any>): void {
   }
 }
 
-constructor(private dialog: MatDialog, private store: AngularFirestore) {}
+constructor(private dialog: MatDialog, private store: AngularFirestore, private dataService: DataService) {}
 
 newTask(): void {
   const dialogRef = this.dialog.open(TaskDialogComponent, {

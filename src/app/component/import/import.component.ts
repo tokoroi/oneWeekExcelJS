@@ -12,6 +12,7 @@ import { DataService } from 'src/app/service/excel-dataService';
 })
 export class ImportComponent {
 
+  // excel-dataService
   constructor(private dataService: DataService) {}
 
   // 読み込んだデータを格納する配列
@@ -29,8 +30,7 @@ export class ImportComponent {
 onFileChange(event: any) {
   const file = event.target.files[0];
   const reader = new FileReader();
-  // 読み込んだデータを格納する配列
-  this.dataService.fileContent = this.fileContent;
+
   // Excelファイル読込処理
   reader.onload = (e: any) => {
     const data = new Uint8Array(e.target.result);
@@ -42,7 +42,8 @@ onFileChange(event: any) {
     const worksheet = workbook.Sheets[sheetName];
     // json形式に変換
     this.fileContent = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-
+    // 読み込んだデータを格納
+    this.dataService.fileContent = this.fileContent;
     // 未入力セルにデフォルト値を設定
     const defaultCellValue = '　';
     for (const row of this.fileContent) {
