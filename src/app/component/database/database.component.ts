@@ -16,7 +16,7 @@ import { DataService } from 'src/app/service/excel-dataService';
 })
 export class DatabaseComponent implements OnInit{
   i!:number;
-  tasks$?: Observable<Task[]>; 
+  tasks$?: Observable<any[]>; 
   constructor(private dialog: MatDialog, private store: AngularFirestore, private dataService: DataService) {}
   ngOnInit(): void {
     const fileContent = this.dataService.fileContent;
@@ -43,7 +43,7 @@ export class DatabaseComponent implements OnInit{
 
       }
     }
-    this.tasks$ = this.store.collection<Task>('todo').valueChanges();
+    this.tasks$ = this.store.collection('todo').valueChanges();
   }
   
 // "全て削除" ボタンをクリックした際の処理

@@ -6,11 +6,15 @@
 		<button (click)="newTask()" mat-button>
 			<mat-icon>add</mat-icon> Add Task
 	</button>
-	<button (click)="deleteAllTasks()">全て削除</button>
+	<button (click)="deleteAllTasks()" mat-button><mat-icon>warning</mat-icon>Delete todo</button>
 	<ul>
-		<li *ngFor="let task of tasks$ | async">
-		  <h3>{{ task.title }}</h3>
-		  <p>{{ task.description }}</p>
+		<li *ngFor="let taskList of tasks$ | async">
+		  <ul>
+			<li *ngFor="let task of taskList.tasks">
+			  <h4>{{ task.title }}</h4>
+			  <p>{{ task.description }}</p>
+			</li>
+		  </ul>
 		</li>
 	  </ul>
 	<div class = "container-wrapper">
