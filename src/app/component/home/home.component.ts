@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { DialogComponent } from '../dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,7 +10,16 @@ import { Router } from '@angular/router';
 export class HomeComponent{
   activeButton: string = 'home'; // 初期値は 'home' とする
 
-  constructor(private router: Router) { } 
+  constructor(private router: Router, public dialog: MatDialog) { } 
+
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '500px',
+      // dialogに渡すデータ
+      data: {}
+    });
+  }
 
   // Excel云々のページ
   Button1Click(): void {

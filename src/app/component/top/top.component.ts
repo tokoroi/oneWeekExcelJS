@@ -13,6 +13,7 @@ export class TopComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '500px',
+      // dialogに渡すデータ
       data: {}
     });
   }
