@@ -42,7 +42,7 @@ onFileChange(event: any) {
     const worksheet = workbook.Sheets[sheetName];
     // json形式に変換
     this.fileContent = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-    // 読み込んだデータを格納
+    // 読み込んだデータをサービスに格納
     this.dataService.fileContent = this.fileContent;
     // 未入力セルにデフォルト値を設定
     const defaultCellValue = '　';
