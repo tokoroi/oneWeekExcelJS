@@ -9,6 +9,7 @@ import * as XLSX from 'xlsx';
 })
 export class GraphComponent implements OnInit{
 
+  // グラフを描画する領域をts側から参照できるように
   @ViewChild("graphCanvas", { static: true }) graphCanvas!: ElementRef;
   // テンプレート内の #dataInput というローカル変数に対応する要素を取得して、それを dataInput というプロパティにバインド
   // テンプレート内の #dataInput という要素（この場合は入力フィールド）を TypeScript のコード内で参照できるように
@@ -17,7 +18,7 @@ export class GraphComponent implements OnInit{
   // X軸要素名
   labels:string[] = [ 'January', 'February', 'March', 'April', 'May', 'June', 'July',
   'August', 'September', 'October', 'November', 'December'];
-  // データ初期値
+  // データ初期値(空)
   data: number[] = [];
   datamaru: number[] = [];
   databatsu: number[] = [];
@@ -50,8 +51,6 @@ export class GraphComponent implements OnInit{
       const reader = new FileReader();
       reader.onload = (e: any) => {
         const data = new Uint8Array(e.target.result);
-        const datamaru = new Uint8Array(e.target.result);
-        const databatsu = new Uint8Array(e.target.result);
         const workbook = XLSX.read(data, { type: 'array' });
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];

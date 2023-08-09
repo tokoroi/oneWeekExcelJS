@@ -3,6 +3,7 @@ import * as XLSX from 'xlsx';
 import { FormsModule } from '@angular/forms';
 import { ExcelOutputService } from 'src/app/service/excel-outputService';
 import { HomeComponent } from '../home/home.component';
+import { DataService } from 'src/app/service/excel-dataService';
 
 @Component({
   selector: 'app-import',
@@ -10,6 +11,8 @@ import { HomeComponent } from '../home/home.component';
   styleUrls: ['./import.component.css', '../../../styles.css']
 })
 export class ImportComponent {
+
+  constructor(private dataService: DataService) {}
 
   // 読み込んだデータを格納する配列
   fileContent: any[][] = [];
@@ -26,7 +29,8 @@ export class ImportComponent {
 onFileChange(event: any) {
   const file = event.target.files[0];
   const reader = new FileReader();
-
+  // 読み込んだデータを格納する配列
+  this.dataService.fileContent = this.fileContent;
   // Excelファイル読込処理
   reader.onload = (e: any) => {
     const data = new Uint8Array(e.target.result);
