@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { style } from '@angular/animations';
 import { toArray } from 'rxjs/operators';
 import { DataService } from 'src/app/service/excel-dataService';
+import { InputDataService } from 'src/app/service/excel-inputService';
 @Component({
   selector: 'app-database',
   templateUrl: './database.component.html',

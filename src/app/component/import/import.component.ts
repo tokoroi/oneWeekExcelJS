@@ -4,16 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { ExcelOutputService } from 'src/app/service/excel-outputService';
 import { HomeComponent } from '../home/home.component';
 import { DataService } from 'src/app/service/excel-dataService';
+import { InputDataService } from 'src/app/service/excel-inputService';
 
 @Component({
   selector: 'app-import',
   templateUrl: './import.component.html',
   styleUrls: ['./import.component.css', '../../../styles.css']
 })
-export class ImportComponent {
+export class ImportComponent{
 
   // excel-dataService
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private inputDataService: InputDataService) {}
 
   // 読み込んだデータを格納する配列
   fileContent: any[][] = [];
@@ -77,8 +78,11 @@ onFileChange(event: any) {
         }
       }
     }
+    this.inputDataService.maruCount = maruCount;
     return maruCount;
   }
+
+
   // 大盛
   countDaiMaru(): number {
     let daiMaruCount = 0;
@@ -89,6 +93,7 @@ onFileChange(event: any) {
         }
       }
     }
+    this.inputDataService.daiMaruCount = daiMaruCount;
     return daiMaruCount;
   }
   // 注文無し
@@ -101,6 +106,7 @@ onFileChange(event: any) {
         }
       }
     }
+    this.inputDataService.batsuCount = batsuCount;
     return batsuCount;
   }
 

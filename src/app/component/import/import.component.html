@@ -22,7 +22,7 @@
                     <tr *ngFor="let row of fileContent; let i = index;">
                         <td>{{ i + 1 }}</td>
                         <td *ngFor="let cell of row; let j = index;" (click)="startEditingCell(i, j)">
-                            <ng-container *ngIf="editingCell.row !== i || editingCell.col !== j; else editCell">                         
+                            <ng-container *ngIf="editingCell.row !== i || editingCell.col !== j; else editCell">
                                 {{ cell || ' ' }} <!-- セルが空の場合はスペースを表示 -->
                             </ng-container>
                             <ng-template #editCell>
