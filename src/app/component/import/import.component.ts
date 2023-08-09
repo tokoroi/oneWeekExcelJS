@@ -78,6 +78,7 @@ onFileChange(event: any) {
         }
       }
     }
+    // excel-inputServiceにデータを渡す
     this.inputDataService.maruCount = maruCount;
     return maruCount;
   }
@@ -93,6 +94,7 @@ onFileChange(event: any) {
         }
       }
     }
+    // excel-inputServiceにデータを渡す
     this.inputDataService.daiMaruCount = daiMaruCount;
     return daiMaruCount;
   }
@@ -106,6 +108,7 @@ onFileChange(event: any) {
         }
       }
     }
+    // excel-inputServiceにデータを渡す
     this.inputDataService.batsuCount = batsuCount;
     return batsuCount;
   }
