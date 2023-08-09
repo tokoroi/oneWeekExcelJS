@@ -60,9 +60,46 @@ onFileChange(event: any) {
     this.showSaveButton = true;
     // 編集中の値をセルごとに初期化する
     this.cellValues = this.fileContent.map(row => [...row]);
+
   };
   // 読込対象(file)を非同期に読み込む
   reader.readAsArrayBuffer(file);
+  }
+
+  countMaru(): number {
+    let maruCount = 0;
+    for (const row of this.fileContent ) {
+      for (const cell of row) {
+        if (cell === '〇') {
+          maruCount++;
+        }
+      }
+    }
+    return maruCount;
+  }
+
+  countDaiMaru(): number {
+    let daiMaruCount = 0;
+    for (const row of this.fileContent ) {
+      for (const cell of row) {
+        if (cell === '◎') {
+          daiMaruCount++;
+        }
+      }
+    }
+    return daiMaruCount;
+  }
+
+  countbatsu(): number {
+    let batsuCount = 0;
+    for (const row of this.fileContent ) {
+      for (const cell of row) {
+        if (cell === '✖') {
+          batsuCount++;
+        }
+      }
+    }
+    return batsuCount;
   }
 
   // セルの編集を行う処理
