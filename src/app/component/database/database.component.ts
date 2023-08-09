@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Task } from 'src/app/component/task/task';
 import { MatDialog } from '@angular/material/dialog';
 import {CdkDragDrop,transferArrayItem} from '@angular/cdk/drag-drop';
@@ -8,12 +8,39 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { style } from '@angular/animations';
 import { toArray } from 'rxjs/operators';
+import { DataService } from 'src/app/service/excel-dataService';
 @Component({
   selector: 'app-database',
   templateUrl: './database.component.html',
   styleUrls: ['./database.component.css', '../../../styles.css']
 })
-export class DatabaseComponent {
+export class DatabaseComponent implements OnInit{
+
+  constructor(private dialog: MatDialog, private store: AngularFirestore, private dataService: DataService) {}
+
+  ngOnInit(): void {
+    // Excelファイル読込画面で読み込ませた後このコンポーネント初期化時にExcelファイルの中身の値を登録
+    const fileContent = this.dataService.fileContent;
+    // 確認用
+    console.log(fileContent); 
+
+    // fileContent の内容を todo に追加
+    if (fileContent && fileContent.length > 0) {
+      for (const row of fileContent) {
+        //taskオブジェクト作成
+        const task: Task = {
+          // 指定したカラムからそれぞれtitleと説明を取得する処理
+          title: row[0], // ここで適切なカラムにアクセスしてタイトルを設定
+          description: row[1] // ここで適切なカラムにアクセスして説明を設定
+        };
+        // taskオブジェクトをdatabaseに追加
+        this.store.collection('todo').add(task);
+      }
+    }
+  }
+  
+
+  
   todo = this.store.collection('todo').valueChanges({ idField: 'id' }) as Observable<Task[]>;
   inProgress = this.store.collection('inProgress').valueChanges({ idField: 'id' }) as Observable<Task[]>;
   done = this.store.collection('done').valueChanges({ idField: 'id' }) as Observable<Task[]>;
@@ -70,7 +97,7 @@ drop(event: CdkDragDrop<Task[]| null, any, any>): void {
   }
 }
 
-constructor(private dialog: MatDialog, private store: AngularFirestore) {}
+
 
 newTask(): void {
   const dialogRef = this.dialog.open(TaskDialogComponent, {
