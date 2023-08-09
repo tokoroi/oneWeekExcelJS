@@ -1,0 +1,14 @@
+/* dialog/dialog.component.css */
+:host {
+    display: block;
+    width: 100%;
+    max-width: 500px; /* ダイアログの最大幅 */
+}
+
+mat-dialog-content {
+    padding: 20px;
+}
+
+mat-dialog-actions {
+    justify-content: flex-end;
+}
