@@ -15,33 +15,46 @@ import { DataService } from 'src/app/service/excel-dataService';
   styleUrls: ['./database.component.css', '../../../styles.css']
 })
 export class DatabaseComponent implements OnInit{
-
+  i!:number;
+  tasks$?: Observable<Task[]>; 
   constructor(private dialog: MatDialog, private store: AngularFirestore, private dataService: DataService) {}
-
   ngOnInit(): void {
-    // Excelファイル読込画面で読み込ませた後このコンポーネント初期化時にExcelファイルの中身の値を登録
     const fileContent = this.dataService.fileContent;
-    // 確認用
-    console.log(fileContent); 
+    // Firebaseから取得したタスクの配列を格納するObservable
 
-    // fileContent の内容を todo に追加
+
     // fileContentに値が入っている且つ長さが1以上
     if (fileContent && fileContent.length > 0) {
-      // fileContentの中身の文だけ回す
       for (const row of fileContent) {
-        //taskオブジェクト作成
-        const task: Task = {
-          // 指定したカラムからそれぞれtitleと説明を取得する処理
-          title: row[0], 
-          description: row[1] 
-        };
-        // taskオブジェクトをdatabaseに追加
-        this.store.collection('todo').add(task);
+        // ループ内でのみ利用するため、ループ内でtaskListオブジェクトを宣言
+        const taskList: Task[] = [];
+        
+        for (this.i = 1; this.i < 31; this.i++) {
+          const task: Task = {
+            title: row[0], 
+            description: row[this.i],
+          };
+          
+          taskList.push(task);
+        }
+        
+        // taskListオブジェクトを一括してdatabaseに追加
+        this.store.collection('todo').add({ tasks: taskList });
+
       }
     }
+    this.tasks$ = this.store.collection<Task>('todo').valueChanges();
   }
   
-
+// "全て削除" ボタンをクリックした際の処理
+deleteAllTasks() {
+  // todo コレクション内の全てのドキュメントを削除
+  this.store.collection<Task>('todo').get().subscribe(snapshot => {
+    snapshot.docs.forEach(doc => {
+      doc.ref.delete();
+    });
+  });
+}
   
   todo = this.store.collection('todo').valueChanges({ idField: 'id' }) as Observable<Task[]>;
   inProgress = this.store.collection('inProgress').valueChanges({ idField: 'id' }) as Observable<Task[]>;
